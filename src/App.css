@@ -1,0 +1,95 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+p {
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  height: 100vh;
+  width: 100%;
+  color: #ffffff;
+}
+
+#root {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+nav {
+  position: fixed;
+  width: 100%;
+  margin: 0 auto;
+  background-color: rgba(0,0,0,0.3);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+  padding: 18px 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+nav ul {
+  display: flex;
+  margin: 0;
+  padding: 0;
+}
+nav li {
+  list-style: none;
+  margin: 0 22px;
+}
+nav a {
+  text-decoration: none;
+  color: #bbbbbb;
+  font-weight: 500;
+}
+nav a:hover {
+  color: #dddddd;
+}
+nav a:active {
+  color: #ffffff;
+}
+
+.home-page-title {
+  padding-right: 20vw;
+  text-align: right;
+  text-align: -webkit-right;
+  color: rgba(255,255,255);
+  opacity: 60%;
+  /* color: rgb(83, 199, 83);
+  opacity: 100%;
+  mix-blend-mode: difference; */
+  font-size: 1.4vw;
+}
+.home-page-title .title-first {
+  font-size: 4.8vw;
+}
+.home-page-title .title-second {
+  font-size: 7vw;
+}
+.home-page-title .subtitle {
+  max-width: 26vw;
+}
+.home-page-title span {
+  white-space: nowrap;
+}
+
+@media (max-width: 1190px) {
+  .home-page-title {
+    padding-right: 10vw;
+    color: rgba(255,255,255);
+    opacity: 70%;
+  }
+}
+@media (max-width: 880px) {
+  .home-page-title {
+    text-align: left;
+    text-align: -webkit-left;
+    padding-left: 10px;
+    opacity: 80%;
+    font-size: 2vw;
+  }
+}

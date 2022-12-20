@@ -1,0 +1,10 @@
+.wrapper-homepage {
+    background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.3)), url('../img/stop_paying_pmi_1800.jpg');
+    /* background-image: url('./img/stop_paying_pmi_1800.jpg'); */
+    width: 100vw;
+    height: 100vh;
+    padding-top: 16vh;
+    /* transform: scaleX(-1); */
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
