@@ -57,8 +57,8 @@ nav a:active {
   padding-right: 20vw;
   text-align: right;
   text-align: -webkit-right;
-  color: rgba(255,255,255);
-  opacity: 60%;
+  color: rgba(255,255,255,0.6);
+  /* opacity: 60%; */
   /* color: rgb(83, 199, 83);
   opacity: 100%;
   mix-blend-mode: difference; */
@@ -69,12 +69,17 @@ nav a:active {
 }
 .home-page-title .title-second {
   font-size: 7vw;
+  font-weight: 500;
 }
 .home-page-title .subtitle {
+  margin-top: 4vw;
   max-width: 26vw;
 }
 .home-page-title span {
   white-space: nowrap;
+  color: rgba(255,255,255,0.7);
+  text-decoration: underline;
+  cursor: pointer;
 }
 
 @media (max-width: 1190px) {
