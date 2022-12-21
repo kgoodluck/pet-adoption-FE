@@ -12,6 +12,7 @@ export default function PetsContextProvider({ children }) {
     const baseUrl = 'http://localhost:8080/pets'
 
     const [ petsArray, setPetsArray ] = useState([]);
+    const [isLoading, setIsLoading] = useState(true)
 
     async function getAllPetsFromDb() {
         try {
@@ -19,6 +20,7 @@ export default function PetsContextProvider({ children }) {
             setPetsArray(res.data);
             console.log('res.data', res.data);
             console.log('petsArray', petsArray);
+            setIsLoading(false)
         } catch(err) {
             console.log(err);
         }
@@ -34,7 +36,7 @@ export default function PetsContextProvider({ children }) {
 
   return (
     <PetsContext.Provider value={ value } >
-      {children}
+      { !isLoading && children}
     </PetsContext.Provider>
   );
 }

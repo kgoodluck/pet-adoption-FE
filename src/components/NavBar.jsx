@@ -12,7 +12,7 @@ export default function NavBar() {
         </ul>
         </div>
         <div className='nav-bar-center'>
-            Hello!
+            Welcome to the Pet Adoption!
         </div>
         <div className='nav-bar-right'>
         <ul>

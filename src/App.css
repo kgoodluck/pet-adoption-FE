@@ -19,19 +19,22 @@ html {
   display: flex;
   flex-direction: column;
   align-items: center;
+  min-height: 100vh;
+  min-width: 100vw;
 }
 
 nav {
   position: fixed;
   width: 100%;
   margin: 0 auto;
-  background-color: rgba(0,0,0,0.3);
+  background-color: rgba(0,0,0,0.5);
   border-bottom: 1px solid rgba(0, 0, 0, 0.2);
   padding: 18px 10px;
   display: flex;
   justify-content: space-between;
   align-items: center;
   z-index: 1;
+  backdrop-filter: blur(6px);
 }
 nav ul {
   display: flex;
@@ -53,29 +56,47 @@ nav a:hover {
 nav a:active {
   color: #ffffff;
 }
+.nav-bar-center {
+  color: #bbbbbb;
+  font-weight: 700;
+}
 
 .wrapper {
-  width: 100vw;
-  height: 100vh;
   padding: 15vh;
   /* background-color: green; */
-    /* background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.3)), url('./img/stop_paying_pmi_1800.jpg'); */
-    /* background-image: url('./img/stop_paying_pmi_1800.jpg'); */
-    width: 100vw;
-    height: 100vh;
-    padding-top: 16vh;
-    /* transform: scaleX(-1); */
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-attachment: scroll;
-    backdrop-filter: blur(100px);
-    /* position: fixed; */
+  background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.3)), url('./img/stop_paying_pmi_1800.jpg') fixed;
+
+  /* background-image: url('./img/stop_paying_pmi_1800.jpg'); */
+  /* width: 100vw; */
+  /* height: 100vh; */
+  padding-top: max(80px, 8vh);
+  /* transform: scaleX(-1); */
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+  backdrop-filter: blur(100px);
+  /* backdrop-filter: brightness(60%); */
+  /* filter: blur(8px); */
+  /* position: fixed; */
+  min-height: 100vh;
+  min-width: 100vw;
 }
-.wrapper::before {
+/* .wrapper::before {
   content: '';
   background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.3)), url('./img/stop_paying_pmi_1800.jpg');
   height: 100vw;
   width: 100w;
+} */
+.wrapper::after {
+  content: "";
+  /* border: 5px solid red; */
+  width: 100vw;
+  height: 100%;
+  top: 0;
+  left: 0;
+  position: fixed;
+  backdrop-filter: blur(15px);
+  z-index: -1;
 }
 
 .home-page-title {
@@ -132,8 +153,25 @@ nav a:active {
 
 
 
+.pet-search-form {
+  width: 50vw;
+  padding: 1.2rem;
+  margin: 0 auto;
+  background-color: rgba(255,255,255,0.8);
+  border-radius: 6px;
+}
 
+.pets-grid {
+  margin-top: 20px;
+}
+
+.pet-card {
+  border: none;
+  outline: none;
+  background: none;
+}
 .adoption-status {
   position: absolute;
   margin: 15px;
 }
+

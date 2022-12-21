@@ -9,13 +9,14 @@ export default function PetCard({ pet }) {
 
     return (
         <Col>
+        {/* <button className="pet-card"> */}
         <Card>
         <Badge bg={adoptionStatus === 'Available' ? 'success' : 'primary'} className="adoption-status" >{adoptionStatus}</Badge>
             <Card.Img variant="top" src={picture} />
             <Card.Body>
-                <Card.Title>
-                    
+                <Card.Title>       
                     {name}, {age} year{age !== 1 ? 's' : ''}
+                    <p className="h6">{type}/{breed}</p>
                 </Card.Title>
                 <Card.Text>
                     This is a longer card with supporting text below as a
@@ -24,6 +25,8 @@ export default function PetCard({ pet }) {
                 </Card.Text>
             </Card.Body>
         </Card>
+        {/* </button> */}
         </Col>
+        
     );
 }
