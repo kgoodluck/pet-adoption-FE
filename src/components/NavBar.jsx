@@ -1,6 +1,8 @@
 import { Link } from "react-router-dom";
+import PopupModal from "./PopupModal";
 
 export default function NavBar() {
+    
   return (
     <nav>
         <div className='nav-bar-left'>
@@ -14,8 +16,8 @@ export default function NavBar() {
         </div>
         <div className='nav-bar-right'>
         <ul>
-            <li><Link to="/login">Log in</Link></li>
-            <li><Link to="/signup">Sign up</Link></li>
+            <li><PopupModal modalType='login' linkText='Log in' /></li>
+            <li><PopupModal modalType='signup' linkText='Sign up' /></li>
         </ul>
         
         </div>

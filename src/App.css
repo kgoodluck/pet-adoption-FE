@@ -31,6 +31,7 @@ nav {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  z-index: 1;
 }
 nav ul {
   display: flex;
@@ -51,6 +52,30 @@ nav a:hover {
 }
 nav a:active {
   color: #ffffff;
+}
+
+.wrapper {
+  width: 100vw;
+  height: 100vh;
+  padding: 15vh;
+  /* background-color: green; */
+    /* background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.3)), url('./img/stop_paying_pmi_1800.jpg'); */
+    /* background-image: url('./img/stop_paying_pmi_1800.jpg'); */
+    width: 100vw;
+    height: 100vh;
+    padding-top: 16vh;
+    /* transform: scaleX(-1); */
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: scroll;
+    backdrop-filter: blur(100px);
+    /* position: fixed; */
+}
+.wrapper::before {
+  content: '';
+  background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.3)), url('./img/stop_paying_pmi_1800.jpg');
+  height: 100vw;
+  width: 100w;
 }
 
 .home-page-title {
@@ -75,11 +100,17 @@ nav a:active {
   margin-top: 4vw;
   max-width: 26vw;
 }
-.home-page-title span {
+.home-page-title a {
   white-space: nowrap;
   color: rgba(255,255,255,0.7);
-  text-decoration: underline;
-  cursor: pointer;
+  /* text-decoration: underline; */
+  /* cursor: pointer; */
+}
+.home-page-title a:hover {
+  white-space: nowrap;
+  color: rgba(255,255,255,0.9);
+  /* text-decoration: underline; */
+  /* cursor: pointer; */
 }
 
 @media (max-width: 1190px) {
@@ -97,4 +128,12 @@ nav a:active {
     opacity: 80%;
     font-size: 2vw;
   }
+}
+
+
+
+
+.adoption-status {
+  position: absolute;
+  margin: 15px;
 }
