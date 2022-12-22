@@ -15,10 +15,18 @@ export default function SearchPage() {
     const [displayedArray, setDisplayedArray] = useState(petsArray);
     const [isBasicSearch, setIsBasicSearch] = useState(true);
     const [searchingPetType, setSearchingPetType] = useState('All pets');
+    const [searchingPetAdoptStatus, setSearchingPetAdoptStatus] = useState('All');
+
+    const typesOfPets = petsArray.map(item => item.type);
+    const uniqeTypesOfPets = [...new Set(typesOfPets)]
+
+    const adoptionStatuses = petsArray.map(item => item.adoptionStatus);
+    const uniqeAdoptionStatuses = [...new Set(adoptionStatuses)].reverse();
+    
 
     console.log('SearchPage mount');
 
-    function handleCheckBoxChange() {
+    function handleSearchOptionChange() {
         setIsBasicSearch(!isBasicSearch);
     }
 
@@ -26,23 +34,31 @@ export default function SearchPage() {
         setDisplayedArray(petsArray)
     }, [])
 
-    const typesOfPets = petsArray.map(item => item.type);
-    const uniqeTypesOfPets = [...new Set(typesOfPets)]
-
     useEffect(() => {
-        console.log('Inside useeffect');
-        let petsToShow = petsArray.filter(item => item.type === searchingPetType);
-        if (searchingPetType === 'All pets') { petsToShow = petsArray }
+        let petsToShow = petsArray.filter(item => { 
+            return ( 
+                
+            (searchingPetType !== 'All pets' ? item.type === searchingPetType : true ) &&
+            ( searchingPetAdoptStatus !== 'All' ? item.adoptionStatus === searchingPetAdoptStatus : true )
+        )});
+            // return ( item.type === searchingPetType &&
+            // ( searchingPetAdoptStatus !== 'All' ? item.adoptionStatus === searchingPetAdoptStatus : "" )
+            // )});
+        // if (searchingPetType === 'All pets') { petsToShow = petsArray }
         setDisplayedArray(petsToShow)
-    }, [searchingPetType])
+    }, [searchingPetType, searchingPetAdoptStatus])
+
+    console.log('searchingPetAdoptStatus', searchingPetAdoptStatus);
+    console.log('displayedArray.length', displayedArray.length);
 
   return (
     <div className='wrapper'>
         <div className='pet-search-form'>
-            { isBasicSearch ? <PetBasicSearchForm types={uniqeTypesOfPets} setSearchingPetType={setSearchingPetType} /> : <PetAdvancedSearchForm /> }
-            <Form.Check type="switch" id="custom-switch" label="Advanced search options" onChange={handleCheckBoxChange} />
+            { isBasicSearch ? <PetBasicSearchForm types={uniqeTypesOfPets} searchingPetType={searchingPetType} setSearchingPetType={setSearchingPetType} /> : <PetAdvancedSearchForm types={uniqeTypesOfPets} searchingPetType={searchingPetType} setSearchingPetType={setSearchingPetType} adoptionStatuses={uniqeAdoptionStatuses} searchingPetAdoptStatus={searchingPetAdoptStatus} setSearchingPetAdoptStatus={setSearchingPetAdoptStatus} /> }
+            <Form.Check reverse type="switch" id="custom-switch" label="Advanced search options" onChange={handleSearchOptionChange} />
         </div>
         <PetsGrid petsArray={displayedArray} />
+        { displayedArray.length === 0 ? <p className='text-center text-light h2'>Try using less filters</p> : "" }
     </div>
   )
 }

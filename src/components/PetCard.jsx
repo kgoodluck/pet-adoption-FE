@@ -11,7 +11,7 @@ export default function PetCard({ pet }) {
         <Col>
         {/* <button className="pet-card"> */}
         <Card>
-        <Badge bg={adoptionStatus === 'Available' ? 'success' : 'primary'} className="adoption-status" >{adoptionStatus}</Badge>
+        <Badge bg={adoptionStatus === 'Available' ? 'success' : adoptionStatus === 'Fostered' ? 'danger' : 'primary'} className="adoption-status" >{adoptionStatus}</Badge>
             <Card.Img variant="top" src={picture} />
             <Card.Body>
                 <Card.Title>       

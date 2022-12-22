@@ -3,51 +3,75 @@ import Button from 'react-bootstrap/Button';
 import Col from 'react-bootstrap/Col';
 import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row';
+import InputGroup from 'react-bootstrap/InputGroup';
 
-function PetAdvancedSearchForm() {
+function PetAdvancedSearchForm({types, searchingPetType, setSearchingPetType, adoptionStatuses, searchingPetAdoptStatus, setSearchingPetAdoptStatus }) {
+
+  console.log('types', types);
+
+  function handleSelectTypeChange(e) {
+    setSearchingPetType(e.target.value);
+  }
+
+  function handleSelectAdoptionStatusChange(e) {
+    setSearchingPetAdoptStatus(e.target.value)
+  }
+
   return (
     <Form>
       <Row className="mb-3">
-        <Form.Group as={Col} controlId="formGridEmail">
-          <Form.Label>Email</Form.Label>
-          <Form.Control type="email" placeholder="Enter email" />
-        </Form.Group>
-
-        <Form.Group as={Col} controlId="formGridPassword">
-          <Form.Label>Password</Form.Label>
-          <Form.Control type="password" placeholder="Password" />
-        </Form.Group>
-      </Row>
-
-      <Form.Group className="mb-3" controlId="formGridAddress1">
-        <Form.Label>Address</Form.Label>
-        <Form.Control placeholder="1234 Main St" />
-      </Form.Group>
-
-      <Form.Group className="mb-3" controlId="formGridAddress2">
-        <Form.Label>Address 2</Form.Label>
-        <Form.Control placeholder="Apartment, studio, or floor" />
-      </Form.Group>
-
-      <Row className="mb-3">
-        <Form.Group as={Col} controlId="formGridCity">
-          <Form.Label>City</Form.Label>
-          <Form.Control />
-        </Form.Group>
-
-        <Form.Group as={Col} controlId="formGridState">
-          <Form.Label>State</Form.Label>
-          <Form.Select defaultValue="Choose...">
-            <option>Choose...</option>
-            <option>...</option>
+        {console.log('types', types)}
+        <Form.Group as={Col} controlId="formGridPetType">
+          <Form.Label>Pet type</Form.Label>
+          <Form.Select defaultValue={searchingPetType} onChange={(e) => handleSelectTypeChange(e)}>
+            <option value='All pets'>All the pets</option>
+            {types.map((type, i) => (
+            <option key={i} value={type}>{type}</option>
+            ))}
           </Form.Select>
         </Form.Group>
 
-        <Form.Group as={Col} controlId="formGridZip">
-          <Form.Label>Zip</Form.Label>
-          <Form.Control />
+        <Form.Group as={Col} controlId="formGridAdoptionStatus">
+          <Form.Label>Adoption status</Form.Label>
+          <Form.Select defaultValue={searchingPetAdoptStatus} onChange={(e) => handleSelectAdoptionStatusChange(e)}>
+            <option value='All'>Any</option>
+            {adoptionStatuses.map((status, i) => (
+            <option key={i} value={status}>{status}</option>
+            ))}
+          </Form.Select>
         </Form.Group>
       </Row>
+
+      <Row className="mb-3">
+      <InputGroup as={Col} id="formGridAdoptionStatus">
+        <Form.Label className="input-group-label">Age</Form.Label>
+        <InputGroup.Text>min</InputGroup.Text>
+        <Form.Control aria-label="min age" />
+        <InputGroup.Text>max</InputGroup.Text>
+        <Form.Control aria-label="max age" />
+      </InputGroup>
+
+      <InputGroup as={Col} id="formGridAdoptionStatus">
+      <Form.Label className="input-group-label">Height</Form.Label>
+        <InputGroup.Text>min</InputGroup.Text>
+        <Form.Control aria-label="min age" />
+        <InputGroup.Text>max</InputGroup.Text>
+        <Form.Control aria-label="max age" />
+      </InputGroup>
+
+      <InputGroup as={Col} id="formGridAdoptionStatus">
+        <Form.Label className="input-group-label">Weight</Form.Label>
+        <InputGroup.Text>min</InputGroup.Text>
+        <Form.Control aria-label="min age" />
+        <InputGroup.Text>max</InputGroup.Text>
+        <Form.Control aria-label="max age" />
+      </InputGroup>
+      </Row>
+
+      <Form.Group className="mb-3" controlId="formGridName">
+        <Form.Label>Name</Form.Label>
+        <Form.Control placeholder="" />
+      </Form.Group>
 
       {/* <Form.Group className="mb-3" id="formGridCheckbox">
         <Form.Check type="checkbox" label="Check me out" />

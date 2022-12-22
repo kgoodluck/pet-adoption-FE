@@ -161,6 +161,11 @@ nav a:active {
   border-radius: 6px;
 }
 
+.input-group-label {
+  flex: 0 0 100%;
+}
+
+
 .pets-grid {
   margin-top: 20px;
 }

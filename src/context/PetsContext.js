@@ -11,7 +11,7 @@ export default function PetsContextProvider({ children }) {
 
     const baseUrl = 'http://localhost:8080/pets'
 
-    const [ petsArray, setPetsArray ] = useState([]);
+    const [petsArray, setPetsArray] = useState([]);
     const [isLoading, setIsLoading] = useState(true)
 
     async function getAllPetsFromDb() {
