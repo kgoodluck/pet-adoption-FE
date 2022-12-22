@@ -16,14 +16,14 @@ export default function PetCard({ pet }) {
             <Card.Body>
                 <Card.Title>       
                     {name}, {age} year{age !== 1 ? 's' : ''}
-                    <p className="h6">{type}/{breed}</p>
                 </Card.Title>
-                <Card.Text>
-                    This is a longer card with supporting text below as a
-                    natural lead-in to additional content. This content is a
-                    little bit longer.
+                <Card.Text className="h6">
+                    {type}/{breed}
                 </Card.Text>
             </Card.Body>
+            <Card.Footer className="text-muted">
+                <p>height: {height}cm, weight: {weight}kg</p>
+            </Card.Footer>
         </Card>
         {/* </button> */}
         </Col>

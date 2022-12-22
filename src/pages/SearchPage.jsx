@@ -14,17 +14,20 @@ export default function SearchPage() {
     const { petsArray } = usePetsContext();
     const [displayedArray, setDisplayedArray] = useState(petsArray);
     const [isBasicSearch, setIsBasicSearch] = useState(true);
-    const [searchingPetType, setSearchingPetType] = useState('All pets');
-    const [searchingPetAdoptStatus, setSearchingPetAdoptStatus] = useState('All');
+
+    const [petTypeSearch, setPetTypeSearch] = useState('All pets');
+    const [petAdoptStatusSearch, setPetAdoptStatusSearch] = useState('All');
+    const [petAgeSearch, setPetAgeSearch] = useState({ min: '', max: '' });
+    const [petHeightSearch, setPetHeightSearch] = useState({ min: '', max: '' });
+    const [petWeightSearch, setPetWeightSearch] = useState({ min: '', max: '' });
+    const [petNameSearch, setPetNameSearch] = useState('');
+
 
     const typesOfPets = petsArray.map(item => item.type);
     const uniqeTypesOfPets = [...new Set(typesOfPets)]
 
     const adoptionStatuses = petsArray.map(item => item.adoptionStatus);
     const uniqeAdoptionStatuses = [...new Set(adoptionStatuses)].reverse();
-    
-
-    console.log('SearchPage mount');
 
     function handleSearchOptionChange() {
         setIsBasicSearch(!isBasicSearch);
@@ -37,24 +40,48 @@ export default function SearchPage() {
     useEffect(() => {
         let petsToShow = petsArray.filter(item => { 
             return ( 
-                
-            (searchingPetType !== 'All pets' ? item.type === searchingPetType : true ) &&
-            ( searchingPetAdoptStatus !== 'All' ? item.adoptionStatus === searchingPetAdoptStatus : true )
+            ( petTypeSearch !== 'All pets' ? item.type === petTypeSearch : true ) &&
+            ( petAdoptStatusSearch !== 'All' ? item.adoptionStatus === petAdoptStatusSearch : true ) &&
+            ( petAgeSearch.min ? item.age >= +petAgeSearch.min : true ) &&
+            ( petAgeSearch.max ? item.age <= +petAgeSearch.max : true ) &&
+            ( petHeightSearch.min ? item.height >= +petHeightSearch.min : true ) &&
+            ( petHeightSearch.max ? item.height <= +petHeightSearch.max : true ) &&
+            ( petWeightSearch.min ? item.weight >= +petWeightSearch.min : true ) &&
+            ( petWeightSearch.max ? item.weight <= +petWeightSearch.max : true ) &&
+            ( petNameSearch ? item.name.toLowerCase().includes(petNameSearch) : true )
         )});
-            // return ( item.type === searchingPetType &&
-            // ( searchingPetAdoptStatus !== 'All' ? item.adoptionStatus === searchingPetAdoptStatus : "" )
-            // )});
-        // if (searchingPetType === 'All pets') { petsToShow = petsArray }
         setDisplayedArray(petsToShow)
-    }, [searchingPetType, searchingPetAdoptStatus])
+    }, [petTypeSearch, petAdoptStatusSearch, petAgeSearch, petHeightSearch, petWeightSearch, petNameSearch ])
 
-    console.log('searchingPetAdoptStatus', searchingPetAdoptStatus);
-    console.log('displayedArray.length', displayedArray.length);
+
+
+    const propsForBasicSearch = {    
+        uniqeTypesOfPets,
+        petTypeSearch,
+        setPetTypeSearch
+    }
+
+    const propsForAdvancedSearch = {   
+        uniqeTypesOfPets, 
+        uniqeAdoptionStatuses,
+        petTypeSearch,
+        setPetTypeSearch,
+        petAdoptStatusSearch,
+        setPetAdoptStatusSearch,
+        petAgeSearch, 
+        setPetAgeSearch,
+        petHeightSearch,
+        setPetHeightSearch,
+        petWeightSearch,
+        setPetWeightSearch,
+        petNameSearch,
+        setPetNameSearch
+    }
 
   return (
     <div className='wrapper'>
         <div className='pet-search-form'>
-            { isBasicSearch ? <PetBasicSearchForm types={uniqeTypesOfPets} searchingPetType={searchingPetType} setSearchingPetType={setSearchingPetType} /> : <PetAdvancedSearchForm types={uniqeTypesOfPets} searchingPetType={searchingPetType} setSearchingPetType={setSearchingPetType} adoptionStatuses={uniqeAdoptionStatuses} searchingPetAdoptStatus={searchingPetAdoptStatus} setSearchingPetAdoptStatus={setSearchingPetAdoptStatus} /> }
+            { isBasicSearch ? <PetBasicSearchForm {...propsForBasicSearch} /> : <PetAdvancedSearchForm {...propsForAdvancedSearch} /> }
             <Form.Check reverse type="switch" id="custom-switch" label="Advanced search options" onChange={handleSearchOptionChange} />
         </div>
         <PetsGrid petsArray={displayedArray} />
