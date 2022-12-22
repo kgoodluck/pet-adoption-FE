@@ -13,7 +13,7 @@ export default function PetBasicSearchForm({uniqeTypesOfPets, petTypeSearch, set
   }
 
   return (
-    <Form.Select aria-label="Select the pet type" onChange={(e) => handleSelectChange(e)} className="mb-3">
+    <Form.Select defaultValue={petTypeSearch} aria-label="Select the pet type" onChange={(e) => handleSelectChange(e)} className="mb-3">
       <option value='All pets'>All the pets</option>
       {uniqeTypesOfPets.map((type, i) => (
         <option key={i} value={type}>{type}</option>

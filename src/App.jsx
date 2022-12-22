@@ -6,6 +6,7 @@ import NavBar from "./components/NavBar";
 import ProfilePage from "./pages/ProfilePage";
 import PetsContextProvider from "./context/PetsContext";
 import SearchPage from "./pages/SearchPage";
+import Footer from "./components/Footer";
 
 function App() {
     return (
@@ -17,6 +18,7 @@ function App() {
                     <Route path="/profile" element={<ProfilePage />} />
                     <Route path="/search" element={<SearchPage />} />
                 </Routes>
+                <Footer />
             </PetsContextProvider>
         </BrowserRouter>
     );

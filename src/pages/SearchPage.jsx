@@ -30,7 +30,14 @@ export default function SearchPage() {
     const uniqeAdoptionStatuses = [...new Set(adoptionStatuses)].reverse();
 
     function handleSearchOptionChange() {
+        console.log('here');
         setIsBasicSearch(!isBasicSearch);
+        setPetTypeSearch(petTypeSearch);
+        setPetAdoptStatusSearch('All');
+        setPetAgeSearch({ min: '', max: '' });
+        setPetHeightSearch({ min: '', max: '' });
+        setPetWeightSearch({ min: '', max: '' });
+        setPetNameSearch('');
     }
 
     useEffect(() => {

@@ -8,4 +8,21 @@
     /* transform: scaleX(-1); */
     background-repeat: no-repeat;
     background-size: cover;
+}
+@media (max-width: 1190px) {
+  .wrapper-homepage {
+    background-position: 50% 0%;
   }
+}
+@media (max-width: 880px) {
+  .wrapper-homepage {
+    background-position: 36% 0%;
+  }
+}
+@media (max-width: 650px) {
+  .wrapper-homepage {
+    background-position: 36% 0%;
+  }
+}
+
+  
