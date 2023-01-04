@@ -14,20 +14,21 @@ export default function AuthContextProvider({ children }) {
     const [currentUser, setCurrentUser] = useState({});
     const [isLoading, setIsLoading] = useState(true)
 
-    async function getUserFromDb() {
+    async function checkIfUserIsLoggedIn() {
         try {
-            // const res = await axios.get(baseUrl);
-            // setPetsArray(res.data);
-            // console.log('res.data', res.data);
-            // console.log('petsArray', petsArray);
+            const res = await axios.get(`${baseUrl}/login`, {withCredentials: true});
+            setCurrentUser({ id: res.data.id, name: res.data.name });
+            console.log('res', res);
             setIsLoading(false)
         } catch(err) {
-            console.log(err);
+            setIsLoading(false);
         }
-    };
+        console.log('currentUser', currentUser);
+    }
 
+    console.log('safaf');
     useEffect(() => {
-        getUserFromDb();
+        checkIfUserIsLoggedIn();
     }, [])
 
     const value = {
@@ -37,7 +38,7 @@ export default function AuthContextProvider({ children }) {
 
   return (
     <AuthContext.Provider value={value} >
-      { !isLoading && children}
+      {!isLoading && children}
     </AuthContext.Provider>
   );
 }

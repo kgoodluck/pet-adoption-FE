@@ -16,8 +16,7 @@ const signUpUserApi = async(user) => {
 
 const loginUserApi = async(user) => {
     try {
-        const res = await axios.post(`${baseUrl}/login`, user);
-        res.ok = true;
+        const res = await axios.post(`${baseUrl}/login`, user, {withCredentials: true});
         return res;
     } catch(err) {
         console.log(err);
@@ -25,4 +24,9 @@ const loginUserApi = async(user) => {
     }
 }
 
-export { signUpUserApi, loginUserApi }
+const logoutUserApi = async(user) => {
+    const res = await axios.post(`${baseUrl}/logout`, user, {withCredentials: true});
+    return res;
+}
+
+export { signUpUserApi, loginUserApi, logoutUserApi }

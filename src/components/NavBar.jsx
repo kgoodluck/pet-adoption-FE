@@ -2,11 +2,20 @@ import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useAuthContext } from "../context/AuthContext";
 import PopupModal from "./PopupModal";
+import { logoutUserApi } from '../api/usersApi';
 
 export default function NavBar() {
 
-  const { currentUser } = useAuthContext();
-    
+  const { currentUser, setCurrentUser } = useAuthContext();
+
+  async function handleLogOut() {
+    const res = await logoutUserApi(currentUser);
+    console.log('res status', res.status);
+    if (res.status === 200) {
+      setCurrentUser({});
+    }
+  }
+  
   return (
     <nav>
         <div className='nav-bar-left'>
@@ -20,8 +29,9 @@ export default function NavBar() {
         </div>
         <div className='nav-bar-right'>
         <ul>
-            <li><PopupModal modalType='login' linkText='Log in' /></li>
-            <li><PopupModal modalType='signup' linkText='Sign up' /></li>
+            { !currentUser.id && <li><PopupModal modalType='login' linkText='Log in' /></li> }
+            { !currentUser.id && <li><PopupModal modalType='signup' linkText='Sign up' /></li> }
+            { currentUser.id && <button className='btn btn-success' onClick={handleLogOut}>Log out</button> }
         </ul>
         
         </div>

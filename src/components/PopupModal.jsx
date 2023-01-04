@@ -26,7 +26,6 @@ function PopupModal({modalType, linkText}) {
     if(popupMode === 'login') {
     setLoginDetails({...loginDetails, [e.target.id]: e.target.value})
     setReceivedError('');
-    console.log('loginDetails', loginDetails);
     }
     if(popupMode === 'signup')
     setSignUpDetails({ ...signUpDetails, [e.target.id]: e.target.value}); 
@@ -63,9 +62,8 @@ function PopupModal({modalType, linkText}) {
     try {
       const res = await loginUserApi(loginDetails);
       console.log('res', res);
-      if (res.ok && res.data.token) {
-        setCurrentUser({ token: res.data.token, name: res.data.name })
-        localStorage.setItem('token', JSON.stringify(res.data.token));
+      if (res.data.ok) {
+        setCurrentUser({ id: res.data.id, name: res.data.name });
         setShow(false);
       } else {
         setReceivedError(res.response.data)
