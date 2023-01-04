@@ -11,8 +11,14 @@ export default function PetsContextProvider({ children }) {
 
     const baseUrl = 'http://localhost:8080/pets'
 
+    console.log('1');
+
     const [petsArray, setPetsArray] = useState([]);
     const [isLoading, setIsLoading] = useState(true)
+
+    useEffect(() => {
+      console.log('2');
+    })
 
     async function getAllPetsFromDb() {
         try {
@@ -28,6 +34,7 @@ export default function PetsContextProvider({ children }) {
 
     useEffect(() => {
         getAllPetsFromDb();
+        console.log('2.5');
     }, [])
 
     const value = {

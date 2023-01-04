@@ -1,7 +1,11 @@
+import { useEffect } from "react";
 import { Link } from "react-router-dom";
+import { useAuthContext } from "../context/AuthContext";
 import PopupModal from "./PopupModal";
 
 export default function NavBar() {
+
+  const { currentUser } = useAuthContext();
     
   return (
     <nav>
@@ -12,7 +16,7 @@ export default function NavBar() {
         </ul>
         </div>
         <div className='nav-bar-center'>
-            Welcome to the Pet Adoption!
+            { currentUser.name ? `Hello, ${currentUser.name}` : "Welcome to the Pet Adoption!"}
         </div>
         <div className='nav-bar-right'>
         <ul>

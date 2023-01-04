@@ -5,17 +5,16 @@ import Badge from 'react-bootstrap/Badge';
 
 export default function PetCard({ pet }) {
 
-    const { adoptionStatus, age, bio, breed, color, dietery, height, hypoallergnic, name, picture, type, weight } = pet;
+    const { id, adoptionStatus, age, bio, breed, color, dietery, height, hypoallergnic, name, picture, type, weight } = pet;
 
     return (
         <Col>
-        {/* <button className="pet-card"> */}
         <Card>
         <Badge bg={adoptionStatus === 'Available' ? 'success' : adoptionStatus === 'Fostered' ? 'danger' : 'primary'} className="adoption-status" >{adoptionStatus}</Badge>
-            <Card.Img variant="top" src={picture} />
+            <a href={`./pets/${id}`}><Card.Img variant="top" src={picture} /></a>
             <Card.Body>
                 <Card.Title>       
-                    {name}, {age} year{age !== 1 ? 's' : ''}
+                    <a href={`./pets/${id}`}>{name}, {age} year{age !== 1 ? 's' : ''}</a>
                 </Card.Title>
                 <Card.Text className="h6">
                     {type}/{breed}
@@ -25,7 +24,6 @@ export default function PetCard({ pet }) {
                 <p>height: {height}cm, weight: {weight}kg</p>
             </Card.Footer>
         </Card>
-        {/* </button> */}
         </Col>
         
     );

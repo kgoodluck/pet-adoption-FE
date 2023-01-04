@@ -163,6 +163,11 @@ nav a:active {
   position: absolute;
   margin: 15px;
 }
+.watch-list {
+  position: absolute;
+  right: 0;
+  margin: 15px;
+}
 
 .footer {
   position: fixed;
@@ -178,7 +183,14 @@ nav a:active {
 
 
 
+.pet-page-card {
+  width: 50vw;
+  margin: 0 auto;
+}
 
+.random-emoji {
+  position: absolute;
+}
 
 
 

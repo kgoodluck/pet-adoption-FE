@@ -4,22 +4,27 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import HomePage from "./pages/HomePage";
 import NavBar from "./components/NavBar";
 import ProfilePage from "./pages/ProfilePage";
+import AuthContextProvider from "./context/AuthContext";
 import PetsContextProvider from "./context/PetsContext";
 import SearchPage from "./pages/SearchPage";
 import Footer from "./components/Footer";
+import PetPage from "./pages/PetPage";
 
 function App() {
     return (
         <BrowserRouter>
-            <PetsContextProvider>
-                <NavBar />
-                <Routes>
-                    <Route path="/" element={<HomePage />} />
-                    <Route path="/profile" element={<ProfilePage />} />
-                    <Route path="/search" element={<SearchPage />} />
-                </Routes>
-                <Footer />
-            </PetsContextProvider>
+            <AuthContextProvider>
+                <PetsContextProvider>
+                    <NavBar />
+                    <Routes>
+                        <Route path="/" element={<HomePage />} />
+                        <Route path="/profile" element={<ProfilePage />} />
+                        <Route path="/search" element={<SearchPage />} />
+                        <Route path="/pets/:petId" element={<PetPage />} />
+                    </Routes>
+                    <Footer />
+                </PetsContextProvider>
+            </AuthContextProvider>
         </BrowserRouter>
     );
 }

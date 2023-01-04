@@ -5,6 +5,7 @@ import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row';
 import InputGroup from 'react-bootstrap/InputGroup';
 import { useState } from 'react';
+import InfirmationOnHover from './InfirmationOnHover';
 
 function PetAdvancedSearchForm({uniqeTypesOfPets, petTypeSearch, setPetTypeSearch, uniqeAdoptionStatuses, petAdoptStatusSearch, setPetAdoptStatusSearch, petAgeSearch, setPetAgeSearch, petHeightSearch, setPetHeightSearch, petWeightSearch, setPetWeightSearch, petNameSearch, setPetNameSearch }) {
 
@@ -71,6 +72,7 @@ function PetAdvancedSearchForm({uniqeTypesOfPets, petTypeSearch, setPetTypeSearc
 
         <Form.Group as={Col} controlId="formGridAdoptionStatus">
           <Form.Label>Adoption status</Form.Label>
+          <InfirmationOnHover placement={'right'} cover={'i'} text={'Fostered means that a pet has a temporary home for now'} />
           <Form.Select defaultValue={petAdoptStatusSearch} onChange={(e) => handleSelectAdoptionStatusChange(e)}>
             <option value='All'>Any</option>
             {uniqeAdoptionStatuses.map((status, i) => (
