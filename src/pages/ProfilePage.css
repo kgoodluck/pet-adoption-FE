@@ -1,0 +1,4 @@
+.user-profile-card {
+    margin: 0 auto;
+    width: max(35vw, 600px);
+}

@@ -24,7 +24,7 @@ export default function SearchPage() {
 
 
     const typesOfPets = petsArray.map(item => item.type);
-    const uniqeTypesOfPets = [...new Set(typesOfPets)]
+    const uniqeTypesOfPets = [...new Set(typesOfPets)];
 
     const adoptionStatuses = petsArray.map(item => item.adoptionStatus);
     const uniqeAdoptionStatuses = [...new Set(adoptionStatuses)].reverse();

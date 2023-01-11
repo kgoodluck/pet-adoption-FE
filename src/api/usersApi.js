@@ -29,4 +29,21 @@ const logoutUserApi = async(user) => {
     return res;
 }
 
-export { signUpUserApi, loginUserApi, logoutUserApi }
+const getUserDataApi = async(id) => {
+    const res = await axios.get(`${baseUrl}/getUserData/${id}`, {withCredentials: true});
+    console.log('getUserData res', res);
+    return res;
+}
+
+const editUserProfileApi = async(newData) => {
+    try {
+        const res = await axios.put(baseUrl, newData, {withCredentials: true});
+        console.log('res', res);
+        return res;
+    } catch(err) {
+        console.log(err);
+        return err;
+    }
+}
+
+export { signUpUserApi, loginUserApi, logoutUserApi, getUserDataApi, editUserProfileApi }

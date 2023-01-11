@@ -15,7 +15,6 @@ function PopupModal({modalType, linkText}) {
   const [ isDisabled, setIsDisabled ] = useState(true);
 
   const [popupMode, setPopupMode] = useState(modalType);
-  // setPopupMode(modalType);
 
   const [justSignedUp, setJustSignedUp] = useState(false);
   const [receivedError, setReceivedError] = useState('');
@@ -62,8 +61,8 @@ function PopupModal({modalType, linkText}) {
     try {
       const res = await loginUserApi(loginDetails);
       console.log('res', res);
-      if (res.data.ok) {
-        setCurrentUser({ id: res.data.id, name: res.data.name });
+      if (res.status === 200) {
+        setCurrentUser({ id: res.data.id, firstName: res.data.firstName, lastName: res.data.lastName, isAdmin: res.data.isAdmin });
         setShow(false);
       } else {
         setReceivedError(res.response.data)

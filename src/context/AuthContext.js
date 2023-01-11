@@ -17,7 +17,8 @@ export default function AuthContextProvider({ children }) {
     async function checkIfUserIsLoggedIn() {
         try {
             const res = await axios.get(`${baseUrl}/login`, {withCredentials: true});
-            setCurrentUser({ id: res.data.id, name: res.data.name });
+            console.log('res ->>>>>', res);
+            setCurrentUser({ id: res.data.id, firstName: res.data.firstName, lastName: res.data.lastName, isAdmin: res.data.isAdmin });
             console.log('res', res);
             setIsLoading(false)
         } catch(err) {

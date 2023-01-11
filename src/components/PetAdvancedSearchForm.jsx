@@ -92,7 +92,7 @@ function PetAdvancedSearchForm({uniqeTypesOfPets, petTypeSearch, setPetTypeSearc
       </InputGroup>
 
       <InputGroup as={Col} id="formGridAdoptionStatus">
-      <Form.Label className="input-group-label">Height</Form.Label>
+      <Form.Label className="input-group-label">Height (cm)</Form.Label>
         <InputGroup.Text>min</InputGroup.Text>
         <Form.Control id="heightMin" aria-label="min height" onChange={(e) => handleHeightChange(e)} />
         <InputGroup.Text>max</InputGroup.Text>
@@ -100,7 +100,7 @@ function PetAdvancedSearchForm({uniqeTypesOfPets, petTypeSearch, setPetTypeSearc
       </InputGroup>
 
       <InputGroup as={Col} id="formGridAdoptionStatus">
-        <Form.Label className="input-group-label">Weight</Form.Label>
+        <Form.Label className="input-group-label">Weight (kg)</Form.Label>
         <InputGroup.Text>min</InputGroup.Text>
         <Form.Control id="weightMin" aria-label="min weight" onChange={(e) => handleWeightChange(e)} />
         <InputGroup.Text>max</InputGroup.Text>

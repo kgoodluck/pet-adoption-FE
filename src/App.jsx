@@ -9,6 +9,7 @@ import PetsContextProvider from "./context/PetsContext";
 import SearchPage from "./pages/SearchPage";
 import Footer from "./components/Footer";
 import PetPage from "./pages/PetPage";
+import NotFound from "./pages/NotFound";
 
 function App() {
     return (
@@ -21,6 +22,7 @@ function App() {
                         <Route path="/profile" element={<ProfilePage />} />
                         <Route path="/search" element={<SearchPage />} />
                         <Route path="/pets/:petId" element={<PetPage />} />
+                        <Route path="*" element={<NotFound />} />
                     </Routes>
                     <Footer />
                 </PetsContextProvider>
