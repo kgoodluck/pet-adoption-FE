@@ -10,6 +10,7 @@ import SearchPage from "./pages/SearchPage";
 import Footer from "./components/Footer";
 import PetPage from "./pages/PetPage";
 import NotFound from "./pages/NotFound";
+import MyPets from "./pages/MyPets";
 
 function App() {
     return (
@@ -21,6 +22,7 @@ function App() {
                         <Route path="/" element={<HomePage />} />
                         <Route path="/profile" element={<ProfilePage />} />
                         <Route path="/search" element={<SearchPage />} />
+                        <Route path="/my-pets" element={<MyPets />} />
                         <Route path="/pets/:petId" element={<PetPage />} />
                         <Route path="*" element={<NotFound />} />
                     </Routes>

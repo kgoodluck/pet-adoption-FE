@@ -3,7 +3,7 @@ import * as React from "react";
 function IconBookmarkStarFill(props) {
   return (
     <svg
-      fill="currentColor"
+      fill="purple"
       viewBox="0 0 16 16"
       height="1.4em"
       width="1.4em"

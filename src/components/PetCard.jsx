@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Col from "react-bootstrap/Col";
 import Card from "react-bootstrap/Card";
 import Badge from 'react-bootstrap/Badge';
@@ -40,8 +40,8 @@ export default function PetCard({ pet }) {
                 <Badge bg={adoptionStatus === 'Available' ? 'success' : adoptionStatus === 'Fostered' ? 'danger' : 'primary'} className="adoption-status" >{adoptionStatus}</Badge>
                 { currentUser.id &&
                 <button className="bookmark-button" onClick={handleBookmarkButtonClick}>
-                    { !petsAddedToWatchlist.some(pet => pet === id) && <IconBookmarkStar className="bookmark-icon" /> }
-                    { petsAddedToWatchlist.some(pet => pet === id) && <IconBookmarkStarFill className="bookmark-icon" /> }
+                    { !petsAddedToWatchlist.some(petId => petId === id) && <IconBookmarkStar className="bookmark-icon" /> }
+                    { petsAddedToWatchlist.some(petId => petId === id) && <IconBookmarkStarFill className="bookmark-icon" /> }
                 </button>
                 }
             </div>

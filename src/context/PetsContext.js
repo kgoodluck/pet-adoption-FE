@@ -1,5 +1,7 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import axios from 'axios';
+import { getPetsAddedToWatchlist } from "../api/petsApi";
+import { useAuthContext } from "./AuthContext";
 
 export const PetsContext = createContext();
 
@@ -8,6 +10,8 @@ export function usePetsContext() {
 }
 
 export default function PetsContextProvider({ children }) {
+
+    const { currentUser } = useAuthContext();
 
     const baseUrl = 'http://localhost:8080/pets'
 
@@ -21,25 +25,25 @@ export default function PetsContextProvider({ children }) {
             setPetsArray(res.data);
             console.log('res.data', res.data);
             console.log('petsArray', petsArray);
-            setIsLoading(false)
         } catch(err) {
             console.log(err);
         }
     };
 
-    async function getPetsAddedToWatchlist(userId) {
-      try {
-          const res = await axios.get(`${baseUrl}/added-to-watchlist/${userId}`);
-          setPetsAddedToWatchlist(res.data);
-          return res;
-      } catch(err) {
-          console.log(err);
-      }
-    };
+    async function setPetsFromWatchlist() {
+      const petsFromWatchlist = await getPetsAddedToWatchlist(currentUser.id);
+      setPetsAddedToWatchlist(petsFromWatchlist);
+      setIsLoading(false);
+    }
  
     useEffect(() => {
-        getAllPetsFromDb();
+      getAllPetsFromDb();
+      setPetsFromWatchlist();
     }, [])
+
+    useEffect(() => {
+      setPetsFromWatchlist();
+    }, [currentUser])
 
     const value = {
         petsArray,
