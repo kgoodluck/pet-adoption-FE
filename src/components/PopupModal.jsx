@@ -22,6 +22,7 @@ function PopupModal({modalType, linkText}) {
   const [loginDetails, setLoginDetails] = useState({});
 
   function handleFormChange(e) {
+    console.log('e', e);
     if(popupMode === 'login') {
     setLoginDetails({...loginDetails, [e.target.id]: e.target.value})
     setReceivedError('');

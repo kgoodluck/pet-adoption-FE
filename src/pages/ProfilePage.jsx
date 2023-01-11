@@ -75,8 +75,8 @@ export default function ProfilePage() {
                     <Form
                         onChange={handleFormChange}
                     >
-                        <Row className="mb-3">
-                            <InputGroup as={Col} className="mb-3">
+                        <Row className="mb-2">
+                            <InputGroup as={Col} className="mb-2">
                                 <InputGroup.Text id="firstName">
                                     First name
                                 </InputGroup.Text>
@@ -88,7 +88,7 @@ export default function ProfilePage() {
                                     className={ !newUserProfile.firstName ? 'border-danger' : '' }
                                 />
                             </InputGroup>
-                            <InputGroup as={Col} className="mb-3">
+                            <InputGroup as={Col} className="mb-2">
                                 <InputGroup.Text id="lastName">
                                     Last name
                                 </InputGroup.Text>
@@ -111,8 +111,8 @@ export default function ProfilePage() {
           <Form.Control type="text" placeholder="Last name" autoComplete="family-name" />
         </Form.Group> */}
                         </Row>
-                        <Row className="mb-3">
-                            <InputGroup className="mb-3">
+                        <Row className="mb-2">
+                            <InputGroup className="mb-2">
                                 <InputGroup.Text id="email">
                                     Email
                                 </InputGroup.Text>
@@ -131,8 +131,8 @@ export default function ProfilePage() {
         </Form.Group> */}
                         </Row>
 
-                        <Row className="mb-3">
-                            <InputGroup className="mb-3">
+                        <Row className="mb-2">
+                            <InputGroup className="mb-2">
                                 <InputGroup.Text id="phone">
                                     Phone
                                 </InputGroup.Text>
@@ -150,7 +150,7 @@ export default function ProfilePage() {
         <Form.Label>Phone number</Form.Label>
         <Form.Control type="tel" placeholder="" autoComplete="tel" />
       </Form.Group> */}
-                        <Row className="mb-3">
+                        <Row className="mb-2">
                             <InputGroup>
                                 <InputGroup.Text id="bio">Bio</InputGroup.Text>
                                 <Form.Control
@@ -209,7 +209,10 @@ export default function ProfilePage() {
                         </Row>
                     </Form>
                     {/* { isChangingPassword && newUserProfile.newPassword.split('').length < 4 ? <p className="text-danger">Can't be less than 4</p> : ""} */}
-                    <p className="text-danger m-1" style={{userSelect: "none"}}>{receivedError !== '' ? receivedError : '\u00A0' }</p>
+                    <p className="text-danger m-1" style={{userSelect: "none"}}>
+                      {receivedError !== '' ? receivedError : '\u00A0' }
+                      { isChangingPassword && newUserProfile.newPassword.split('').length > 0 && newUserProfile.newPassword.split('').length < 4 ? "Can't be less than 4" : ""}
+                    </p>
                     <Button variant="success" onClick={handleSaveChanges} disabled={!isFormValid} title={JSON.stringify(currentUserProfile) === JSON.stringify(newUserProfile) ? "You didn't change anything" : "Save"}>
             Save
           </Button>

@@ -7,8 +7,9 @@ export default function RandomEmojis({emoji, amount, minFontSize, maxFontSize}) 
     const arrayOfCoordinates = [];
 
     for (let i = 0; i < amount; i++) {
-        const randomMovingValue = getRandomNumber(-10, 10);
+        // const randomMovingValue = getRandomNumber(-10, 10);
         const randomFontSize = getRandomNumber(minFontSize, maxFontSize);
+        const randomMovingValue = (maxFontSize - randomFontSize) / 9 * (Math.round(Math.random()) * 2 - 1);
         const randomLeft = getRandomNumber(0, winWidth - randomFontSize);
         const randomTop = getRandomNumber(0, winHeight - randomFontSize);
         arrayOfCoordinates.push({ 'top': randomTop, 'left': randomLeft, 'font': randomFontSize, 'movingValue': randomMovingValue});

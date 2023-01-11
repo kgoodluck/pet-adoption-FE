@@ -45,7 +45,7 @@ export default function PetPage() {
       const movingValue = emoji.getAttribute('data-moving-value');
       const x = (movingValue * e.clientX) / 150;
       const y = movingValue * e.clientY / 150;
-      // const width = move.getBoundingClientRect().width;
+      // const width = emoji.getBoundingClientRect().width;
       emoji.style.transform = `translateX(${x}px) translateY(${y}px)`;
     })
   }
@@ -84,7 +84,7 @@ export default function PetPage() {
               <p>height: {height}cm, weight: {weight}kg</p>
           </Card.Footer>
         </Card>    
-        <RandomEmojis emoji={type === 'Dog' ? '🐶' : type === 'Cat' ? '🐈' : '🐁'} amount={25} minFontSize={32} maxFontSize={122} />
+        <RandomEmojis emoji={type === 'Dog' ? '🐶' : type === 'Cat' ? '🐈' : '🐁'} amount={15} minFontSize={32} maxFontSize={132} />
         </>
       }
     </div> 

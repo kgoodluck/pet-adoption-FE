@@ -60,7 +60,7 @@ export default function SearchPage() {
         setDisplayedArray(petsToShow)
     }, [petTypeSearch, petAdoptStatusSearch, petAgeSearch, petHeightSearch, petWeightSearch, petNameSearch ])
 
-
+    
 
     const propsForBasicSearch = {    
         uniqeTypesOfPets,

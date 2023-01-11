@@ -11,14 +11,9 @@ export default function PetsContextProvider({ children }) {
 
     const baseUrl = 'http://localhost:8080/pets'
 
-    console.log('1');
-
     const [petsArray, setPetsArray] = useState([]);
-    const [isLoading, setIsLoading] = useState(true)
-
-    useEffect(() => {
-      console.log('2');
-    })
+    const [petsAddedToWatchlist, setPetsAddedToWatchlist] = useState([]);
+    const [isLoading, setIsLoading] = useState(true);
 
     async function getAllPetsFromDb() {
         try {
@@ -32,14 +27,29 @@ export default function PetsContextProvider({ children }) {
         }
     };
 
+    async function getPetsAddedToWatchlist(userId) {
+      try {
+          const res = await axios.get(`${baseUrl}/added-to-watchlist/${userId}`);
+          setPetsAddedToWatchlist(res.data);
+          return res;
+      } catch(err) {
+          console.log(err);
+      }
+    };
+ 
     useEffect(() => {
         getAllPetsFromDb();
-        console.log('2.5');
     }, [])
 
     const value = {
         petsArray,
+        petsAddedToWatchlist,
+        setPetsAddedToWatchlist,
     }
+
+    useEffect(() => {
+      console.log('petsAddedToWatchlist', petsAddedToWatchlist);
+    }, [petsAddedToWatchlist])
 
   return (
     <PetsContext.Provider value={ value } >
