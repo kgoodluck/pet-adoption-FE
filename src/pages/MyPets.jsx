@@ -4,6 +4,7 @@ import Tabs from "react-bootstrap/Tabs";
 import { getMultiplePetsByIdsApi } from "../api/petsApi";
 import PetsGrid from "../components/PetsGrid";
 import { usePetsContext } from "../context/PetsContext";
+import "./MyPets.css";
 
 export default function MyPets() {
     const [key, setKey] = useState("watchlist");
@@ -31,7 +32,7 @@ export default function MyPets() {
                 id="tabs"
                 activeKey={key}
                 onSelect={(k) => setKey(k)}
-                className="mb-3"
+                className=""
             >
                 <Tab eventKey="watchlist" title="Watchlist">
                     { !isLoading && <PetsGrid petsArray={petsFromWatchlist} />}

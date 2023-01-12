@@ -139,22 +139,6 @@ nav .active {
   /* cursor: pointer; */
 }
 
-
-
-
-.pet-search-form {
-  width: 50vw;
-  padding: 1.2rem;
-  margin: 0 auto;
-  background-color: rgba(255,255,255,0.8);
-  border-radius: 6px;
-}
-
-.input-group-label {
-  flex: 0 0 100%;
-}
-
-
 .pets-grid {
   margin-top: 20px;
 }

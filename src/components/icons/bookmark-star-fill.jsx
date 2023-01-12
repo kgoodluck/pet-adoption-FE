@@ -5,8 +5,8 @@ function IconBookmarkStarFill(props) {
     <svg
       fill="purple"
       viewBox="0 0 16 16"
-      height="1.4em"
-      width="1.4em"
+      height="1.8em"
+      width="1.8em"
       {...props}
     >
       <path

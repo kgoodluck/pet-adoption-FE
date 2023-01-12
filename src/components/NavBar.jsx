@@ -1,25 +1,26 @@
 import { useEffect } from "react";
-import { NavLink, useLocation } from "react-router-dom";
+import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import { useAuthContext } from "../context/AuthContext";
 import PopupModal from "./PopupModal";
 import { logoutUserApi } from '../api/usersApi';
 
 export default function NavBar() {
 
+  const navigate = useNavigate();
+
   const { currentUser, setCurrentUser } = useAuthContext();
+
   async function handleLogOut() {
     const res = await logoutUserApi(currentUser);
     console.log('res status', res.status);
     if (res.status === 200) {
       setCurrentUser({});
+      navigate("/");
     }
   }
 
   const location = useLocation();
   const path = location.pathname;
-  console.log('location', location);
-  console.log('currentUser', currentUser);
-
   
   return (
     <nav>

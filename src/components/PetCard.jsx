@@ -40,8 +40,8 @@ export default function PetCard({ pet }) {
                 <Badge bg={adoptionStatus === 'Available' ? 'success' : adoptionStatus === 'Fostered' ? 'danger' : 'primary'} className="adoption-status" >{adoptionStatus}</Badge>
                 { currentUser.id &&
                 <button className="bookmark-button" onClick={handleBookmarkButtonClick}>
-                    { !petsAddedToWatchlist.some(petId => petId === id) && <IconBookmarkStar className="bookmark-icon" /> }
-                    { petsAddedToWatchlist.some(petId => petId === id) && <IconBookmarkStarFill className="bookmark-icon" /> }
+                    { !petsAddedToWatchlist.some(petId => petId === id) && <IconBookmarkStar className="bookmark-icon" title="Add to watchlist" /> }
+                    { petsAddedToWatchlist.some(petId => petId === id) && <IconBookmarkStarFill className="bookmark-icon" title="Remove from watchlist" /> }
                 </button>
                 }
             </div>

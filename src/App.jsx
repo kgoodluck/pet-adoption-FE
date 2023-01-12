@@ -9,8 +9,9 @@ import PetsContextProvider from "./context/PetsContext";
 import SearchPage from "./pages/SearchPage";
 import Footer from "./components/Footer";
 import PetPage from "./pages/PetPage";
-import NotFound from "./pages/NotFound";
+import ErrorPage from "./pages/ErrorPage";
 import MyPets from "./pages/MyPets";
+import PrivateRoute from "./components/PrivateRoute";
 
 function App() {
     return (
@@ -20,11 +21,12 @@ function App() {
                     <NavBar />
                     <Routes>
                         <Route path="/" element={<HomePage />} />
-                        <Route path="/profile" element={<ProfilePage />} />
                         <Route path="/search" element={<SearchPage />} />
-                        <Route path="/my-pets" element={<MyPets />} />
                         <Route path="/pets/:petId" element={<PetPage />} />
-                        <Route path="*" element={<NotFound />} />
+                        <Route path="/profile" element={<PrivateRoute><ProfilePage /></PrivateRoute>} />
+                        <Route path="/my-pets" element={<PrivateRoute><MyPets /></PrivateRoute>} />
+                        <Route path="/admin" element={<PrivateRoute mode="admin"><MyPets /></PrivateRoute>} />
+                        <Route path="*" element={<ErrorPage errorCode="404" />} />
                     </Routes>
                     <Footer />
                 </PetsContextProvider>

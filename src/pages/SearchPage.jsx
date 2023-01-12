@@ -7,6 +7,7 @@ import { PetsContext, usePetsContext } from '../context/PetsContext';
 import Form from 'react-bootstrap/Form';
 import PetBasicSearchForm from '../components/PetBasicSearchForm';
 import PetAdvancedSearchForm from '../components/PetAdvancedSearchForm';
+import "./SearchPage.css";
 
 
 export default function SearchPage() {
