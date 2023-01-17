@@ -28,7 +28,7 @@ export default function PetPage() {
   const [ petFromDb, setPetFromDb ] = useState({});
   const [ isLoading, setIsLoading ] = useState(true);
   const { currentUser } = useAuthContext();
-  const { petsAddedToWatchlist, setPetsAddedToWatchlist } = usePetsContext();
+  const { petsAddedToWatchlist, setPetsAddedToWatchlist, petsArray, setPetsArray } = usePetsContext();
 
 
   const { id, adoptionStatus, age, bio, breed, color, dietary, height, hypoallergnic, name, ownerId, picture, type, weight } = petFromDb;
@@ -38,27 +38,9 @@ export default function PetPage() {
   const [fosteredBySomeoneElse, setFosteredBySomeoneElse] = useState(!isPetOwner && adoptionStatus === 'Fostered');
   const [adoptedBySomeoneElse, setAdoptedBySomeoneElse] = useState(!isPetOwner && adoptionStatus === 'Adopted');
 
-  //console.log("----->>>>> isPetOwner && adoptionStatus === 'Adopted'", isPetOwner && adoptionStatus === 'Adopted');
-  console.log('----->>>>> adoptedByUser', adoptedByUser);
-
   useEffect(() => {
     getPetFromDB();
   }, []);
-
-
-  // useEffect(() => {
-    // if (currentUser?.id && currentUser?.id === ownerId) {
-    //   //console.log('555555555');
-    //   setIsPetOwner(true);
-    // }
-    // setIsPetOwner(currentUser?.id && currentUser?.id === ownerId);
-  //   //console.log('UE currentUser?.id', currentUser?.id);
-  //   //console.log('UE ownerId', ownerId);
-  //   //console.log('UE isPetOwner', isPetOwner);
-  //   //console.log('UE adoptionStatus', adoptionStatus);
-  //   setAdoptedByUser(isPetOwner && adoptionStatus === 'Adopted');
-  // }, [petFromDb, currentUser.id])
-
 
   async function getPetFromDB() {
     try {
@@ -136,6 +118,15 @@ export default function PetPage() {
     }
   }
 
+  useEffect(() => {
+    const petToUpdate = petsArray.findIndex(p => p.id === id);
+    console.log('petToUpdate', petsArray[petToUpdate]);
+    petsArray[petToUpdate] = petFromDb;
+    console.log('petToUpdate2', petsArray[petToUpdate]);
+    const newPetsArray = petsArray;
+    setPetsArray(newPetsArray);
+  }, [petFromDb])
+
   async function handleBookmarkButtonClick() {
     try {
         if(petsAddedToWatchlist.some(pet => pet === id)) {
@@ -211,7 +202,7 @@ export default function PetPage() {
               <p>height: {height}cm, weight: {weight}kg</p>
           </Card.Footer>
         </Card>    
-        {/* <RandomEmojis emoji={type === 'Dog' ? '🐶' : type === 'Cat' ? '🐈' : '🐁'} amount={15} minFontSize={32} maxFontSize={132} /> */}
+        <RandomEmojis emoji={type === 'Dog' ? '🐶' : type === 'Cat' ? '🐈' : '🐁'} amount={15} minFontSize={32} maxFontSize={132} />
         </>
       }
     </div> 

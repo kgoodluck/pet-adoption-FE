@@ -66,7 +66,7 @@ export default function EditPetForm({handleEditPet, editValidation, updatedPet, 
 
       <Form.Group as={Col} controlId="formGridZip">
         <Form.Label>Dietary</Form.Label>
-        <Form.Control value={updatedPet.dietary || ''} onChange={(e) => setUpdatedPet({...updatedPet, dietary: e.target.value})}/>
+        <Form.Control value={(updatedPet.dietary !== '[]' && updatedPet.dietary ) || ''} onChange={(e) => setUpdatedPet({...updatedPet, dietary: e.target.value})}/>
       </Form.Group>
 
       <Form.Group as={Col} controlId="formGridCity">

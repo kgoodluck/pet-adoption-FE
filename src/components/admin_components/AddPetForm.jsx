@@ -55,7 +55,7 @@ export default function AddPetForm({newPet, setNewPet, handleAddPet, addValidati
     <Row className="mb-3">
       <Form.Group as={Col} controlId="formGridCity">
         <Form.Label className='required'>Hypoallergenic</Form.Label>
-        <Form.Select required value={newPet.hypoallergenic || ''} onChange={(e) => setNewPet({...newPet, hypoallergenic: e.target.value })}>
+        <Form.Select required value={newPet.hypoallergenic || ''} onChange={(e) => setNewPet({...newPet, hypoallergenic: e.target.value})}>
           <option value='true'>Yes</option>
           <option value='false'>No</option>
           <option value='unknown'>Not known</option>
@@ -82,10 +82,10 @@ export default function AddPetForm({newPet, setNewPet, handleAddPet, addValidati
       </Form.Group>
     </Row>
 
-    {/* <Form.Group className="mb-3" controlId="formGridAddress1">
+    <Form.Group className="mb-3" controlId="formGridAddress1">
       <Form.Label>Picture</Form.Label>
-      <Form.Control type='file' accept='image/png, image/gif, image/jpeg' />
-    </Form.Group> */}
+      <Form.Control type='file' accept='image/png, image/gif, image/jpeg' onChange={(e) => setNewPet({...newPet, picture: e.target.files[0]})} />
+    </Form.Group>
 
     <Form.Group className="mb-3" controlId="formGridAddress2">
       <Form.Label>Bio</Form.Label>

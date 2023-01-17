@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
+import Spinner from 'react-bootstrap/Spinner';
 import UserDetails from './UserDetails';
 import AddPetForm from './AddPetForm';
 import "./AdminPopupModal.css";
@@ -12,29 +13,35 @@ export default function AdminPopupModal(props) {
 
     const { user, mode, pet, updatePetState } = props;
 
-    console.log(props);
-
     const {petsArray, setPetsArray} = usePetsContext();
 
     const [newPet, setNewPet] = useState({ type: 'Cat', hypoallergenic: true, adoptionStatus: 'Available' });
     const [updatedPet, setUpdatedPet] = useState(pet);
+    const [petImage, setPetImage] = useState('');
 
     const [addValidation, setAddValidation] = useState(false);
     const [editValidation, setEditValidation] = useState(false);
     const [errorMessage, setErrorMessage] = useState('');
     const [successMessage, setSuccessMessage] = useState('');
+    const [isAwaitingResponse, setIsAwaitingResponse] = useState(false);
+    const loadingSpinner = isAwaitingResponse && <Spinner as="span" animation="border" size="sm" role="status" aria-hidden="true" />
 
     async function addNewPet(pet) {
-        const hypoallergenicBoolean = pet.hypoallergenic === 'true' || 1 ? true : false;
-        const petObj = {...pet, age: +pet.age, height: +pet.height, weight: +pet.weight, hypoallergenic: hypoallergenicBoolean, picture: pet.picture || ''};
-        const res = await addNewPetApi(petObj);
-        const id = res.data[0];
+        setIsAwaitingResponse(true);
+        const hypoallergenicBoolean = (pet.hypoallergenic === 'true' || 1) ? 1 : 0;
+        const petObj = {...pet, age: +pet.age, height: +pet.height, weight: +pet.weight, hypoallergenic: hypoallergenicBoolean};
+        const petData = new FormData();
+        for (let key in petObj) {
+            petData.append(key, petObj[key]);
+        }
+        const res = await addNewPetApi(petData);
         if (res.status === 200) {
-            setPetsArray([...petsArray, {...pet, id: id, age: +pet.age, height: +pet.height, weight: +pet.weight, picture: pet.picture || ''}]);
-            setNewPet({ type: 'Cat', hypoallergenic: true, adoptionStatus: 'Available' });
+            setPetsArray([...petsArray, res.data]);
+            setIsAwaitingResponse(false);
             setSuccessMessage('Pet was added!');
             setAddValidation(false);
         } else {
+            setIsAwaitingResponse(false);
             setErrorMessage('Error adding pet');
         }
     }
@@ -118,7 +125,7 @@ export default function AdminPopupModal(props) {
             { errorMessage !== '' && <p className='text-danger'>{errorMessage}</p> }
             { successMessage !== '' && <p className='text-success'>{successMessage}</p> }
             <Button onClick={props.onHide}>Close</Button>
-            { mode === 'addPet' && <Button type="submit" form="add-pet-form">Add</Button> }
+            { mode === 'addPet' && <Button type="submit" form="add-pet-form" disabled={isAwaitingResponse}>Add {loadingSpinner}</Button> }
             { mode === 'editPet' && <Button type="submit" form="add-pet-form" >Edit</Button> }
       </Modal.Footer>
     </Modal>

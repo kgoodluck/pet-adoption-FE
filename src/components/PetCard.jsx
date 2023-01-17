@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import { Link } from "react-router-dom";
 import Col from "react-bootstrap/Col";
 import Card from "react-bootstrap/Card";
 import Badge from 'react-bootstrap/Badge';
@@ -49,7 +50,7 @@ export default function PetCard({ pet }) {
             {/* <a href={`./pets/${id}`}><Card.Img variant="top" src={picture} /></a> */}
             <Card.Body>
                 <Card.Title>       
-                    <a href={`./pets/${id}`}>{name}, {age} year{age !== 1 ? 's' : ''}</a>
+                    <Link to={`../pets/${id}`}>{name}, {age} year{age !== 1 ? 's' : ''}</Link>
                 </Card.Title>
                 <Card.Text className="h6">
                     {type}/{breed}
