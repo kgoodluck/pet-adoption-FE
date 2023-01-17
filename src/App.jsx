@@ -12,6 +12,7 @@ import PetPage from "./pages/PetPage";
 import ErrorPage from "./pages/ErrorPage";
 import MyPets from "./pages/MyPets";
 import PrivateRoute from "./components/PrivateRoute";
+import AdminPage from "./pages/AdminPage";
 
 function App() {
     return (
@@ -25,7 +26,7 @@ function App() {
                         <Route path="/pets/:petId" element={<PetPage />} />
                         <Route path="/profile" element={<PrivateRoute><ProfilePage /></PrivateRoute>} />
                         <Route path="/my-pets" element={<PrivateRoute><MyPets /></PrivateRoute>} />
-                        <Route path="/admin" element={<PrivateRoute mode="admin"><MyPets /></PrivateRoute>} />
+                        <Route path="/admin" element={<PrivateRoute mode="admin"><AdminPage /></PrivateRoute>} />
                         <Route path="*" element={<ErrorPage errorCode="404" />} />
                     </Routes>
                     <Footer />

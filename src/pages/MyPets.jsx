@@ -10,18 +10,28 @@ export default function MyPets() {
     const [key, setKey] = useState("watchlist");
     const [isLoading, setIsLoading] = useState(true);
 
-    const { petsAddedToWatchlist } = usePetsContext();
+    const { petsAddedToWatchlist, ownedPets } = usePetsContext();
     const [petsFromWatchlist, setPetsFromWatchlist] = useState([]);
+    const [adoptedPets, setAdoptedPets] = useState([]);
+    const [fosteredPets, setFosteredPets] = useState([]);
+
+    useEffect(() => {
+        console.log('insideUseEffect');
+        setAdoptedPets(ownedPets.filter(pet => pet.adoptionStatus === 'Adopted'));
+        setFosteredPets(ownedPets.filter(pet => pet.adoptionStatus === 'Fostered'));
+        setIsLoading(false);
+    }, [ownedPets])
 
     async function getPetsFromWatchlist(arrayOfIds) {
         const res = await getMultiplePetsByIdsApi(arrayOfIds);
         setPetsFromWatchlist(res.data);
-        setIsLoading(false);
+        // setIsLoading(false);
     }
 
     useEffect(() => {
         console.log('MyPets useEff');
         getPetsFromWatchlist(petsAddedToWatchlist);
+        console.log('ownedPets', ownedPets);
     }, [petsAddedToWatchlist])
 
 
@@ -35,13 +45,16 @@ export default function MyPets() {
                 className=""
             >
                 <Tab eventKey="watchlist" title="Watchlist">
-                    { !isLoading && <PetsGrid petsArray={petsFromWatchlist} />}
+                    { !isLoading && petsAddedToWatchlist.length !== 0 && <PetsGrid petsArray={petsFromWatchlist} />}
+                    { !isLoading && petsAddedToWatchlist.length === 0 && <h4 className="text-center">Your watchlist is empty.</h4> }
                 </Tab>
                 <Tab eventKey="adopted" title="Adopted">
-                    {/* <Sonnet /> */}
+                    { !isLoading && adoptedPets?.length !== 0 && <PetsGrid petsArray={adoptedPets} />}
+                    { !isLoading && adoptedPets?.length === 0 && <h4 className="text-center">You haven't adopted any pets yet.</h4> }
                 </Tab>
-                <Tab eventKey="fostered" title="Fostered" disabled>
-                    {/* <Sonnet /> */}
+                <Tab eventKey="fostered" title="Fostered" disabled={fosteredPets?.length === 0}>
+                    { !isLoading && fosteredPets?.length !== 0 && <PetsGrid petsArray={fosteredPets} />}
+                    { !isLoading && fosteredPets?.length === 0 && <h4 className="text-center">You are not fostering any pet now.</h4> }
                 </Tab>
             </Tabs>
         </div>

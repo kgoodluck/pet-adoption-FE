@@ -2,7 +2,7 @@ import axios from "axios";
 
 const baseUrl = 'http://localhost:8080/pets'
 
-async function getPetsAddedToWatchlist(userId) {
+async function getPetsAddedToWatchlistApi(userId) {
     try {
         const res = await axios.get(`${baseUrl}/watchlist/${userId}`);
         const arrayOfIds = res.data.map(res => +res.pet_id);
@@ -30,6 +30,15 @@ async function deletePetFromWatchlistApi(userId, petId) {
     }
 }
 
+async function getOwnedPetsApi(userId) {
+    try {
+        const res = await axios.get(`${baseUrl}/owned-pets/${userId}`);
+        return res;
+    } catch(err) {
+        console.log(err);
+    }
+};
+
 async function getMultiplePetsByIdsApi(arrayOfIds) {
     try {
         const res = await axios.get(`${baseUrl}/watchlist-array/`, { headers: {'arrayOfIds': arrayOfIds} })
@@ -40,4 +49,52 @@ async function getMultiplePetsByIdsApi(arrayOfIds) {
     }
 }
 
-export { getPetsAddedToWatchlist, addPetToWatchlistApi, deletePetFromWatchlistApi, getMultiplePetsByIdsApi }
+async function adoptPetApi(userId, petId) {
+    try {
+        const action = 'adopt';
+        const res = await axios.post(`${baseUrl}/adopt-pet/`, { userId, petId, action });
+        return res;
+    } catch(err) {
+        console.log(err);
+    }
+}
+
+async function fosterPetApi(userId, petId) {
+    try {
+        const action = 'foster';
+        const res = await axios.post(`${baseUrl}/adopt-pet/`, { userId, petId, action });
+        return res;
+    } catch(err) {
+        console.log(err);
+    }
+}
+
+async function returnPetApi(userId, petId) {
+    try {
+        const action = 'adopt';
+        const res = await axios.post(`${baseUrl}/return-pet/`, { userId, petId, action });
+        return res;
+    } catch(err) {
+        console.log(err);
+    }
+}
+
+async function addNewPetApi(pet) {
+    try {
+        const res = await axios.post(baseUrl, pet);
+        return res;
+    } catch(err) {
+        console.log(err);
+    }
+}
+
+async function editPetApi(pet) {
+    try {
+        const res = await axios.put(baseUrl, pet)
+        return res;
+    } catch(err) {
+        console.log(err);
+    }
+}
+
+export { getPetsAddedToWatchlistApi, addPetToWatchlistApi, deletePetFromWatchlistApi, getOwnedPetsApi, getMultiplePetsByIdsApi, adoptPetApi, fosterPetApi, returnPetApi, addNewPetApi, editPetApi }

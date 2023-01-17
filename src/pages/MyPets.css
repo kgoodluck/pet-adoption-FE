@@ -1,14 +1,14 @@
 .tab-content {
     /* border: 1px solid red; */
+    padding: 1.3rem;
     border-radius: 0 0 8px 8px; 
     border: 3px solid white;
+    background-color: var(--bs-nav-tabs-link-active-bg);
+    background-color: rgba(255, 255, 255, 0.4);
 }
 
 .tab-content .pets-grid {
-    margin: 0;
-    padding: 1.3rem;
-    background-color: var(--bs-nav-tabs-link-active-bg);
-    background-color: rgba(255, 255, 255, 0.4);
+    margin: 1rem;    
     /* border: 5px solid var(--bs-nav-tabs-link-active-);
     border: 5px solid; */
     /* border-color: var(--bs-nav-tabs-link-active-bg);  */
@@ -17,4 +17,8 @@
 .tab-content .pets-grid .col {
     margin-top: 0;
     margin-bottom: 1.3rem;
+}
+
+.tab-pane h4 {
+    margin: 1rem;
 }

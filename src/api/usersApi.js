@@ -46,4 +46,16 @@ const editUserProfileApi = async(newData) => {
     }
 }
 
-export { signUpUserApi, loginUserApi, logoutUserApi, getUserDataApi, editUserProfileApi }
+async function getAllUsersApi() {
+    try {
+        const res = await axios.get(`${baseUrl}/`, {withCredentials: true});
+        return res;
+    } catch(err) {
+        console.log(err);
+        return err;
+    }
+}
+
+
+
+export { signUpUserApi, loginUserApi, logoutUserApi, getUserDataApi, editUserProfileApi, getAllUsersApi }

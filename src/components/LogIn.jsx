@@ -10,11 +10,6 @@ export default function LogIn({handleFormChange, loginDetails, isEmail}) {
                 <Form.Label>Password</Form.Label>
                 <Form.Control type="password" placeholder="Password" autoComplete="current-password" />
             </Form.Group>
-            {/* <div className='d-flex flex-column align-items-center'>
-            Already a member?
-            <a href="#" onClick={(e) => {handleSetPopupModal(e)}}>Log in</a>
-            </div>
-            <div className='text-end'></div> */}
         </Form>
     );
 }

@@ -1,6 +1,6 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import axios from 'axios';
-import { getPetsAddedToWatchlist } from "../api/petsApi";
+import { getOwnedPetsApi, getPetsAddedToWatchlistApi } from "../api/petsApi";
 import { useAuthContext } from "./AuthContext";
 
 export const PetsContext = createContext();
@@ -17,6 +17,7 @@ export default function PetsContextProvider({ children }) {
 
     const [petsArray, setPetsArray] = useState([]);
     const [petsAddedToWatchlist, setPetsAddedToWatchlist] = useState([]);
+    const [ownedPets, setOwnedPets] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
 
     async function getAllPetsFromDb() {
@@ -31,24 +32,34 @@ export default function PetsContextProvider({ children }) {
     };
 
     async function setPetsFromWatchlist() {
-      const petsFromWatchlist = await getPetsAddedToWatchlist(currentUser.id);
+      const petsFromWatchlist = await getPetsAddedToWatchlistApi(currentUser.id);
       setPetsAddedToWatchlist(petsFromWatchlist);
+    }
+
+    async function getOwnedPets() {
+      const res = await getOwnedPetsApi(currentUser.id);
+      setOwnedPets(res.data);
       setIsLoading(false);
     }
  
     useEffect(() => {
       getAllPetsFromDb();
       setPetsFromWatchlist();
+      getOwnedPets();
     }, [])
 
     useEffect(() => {
       setPetsFromWatchlist();
     }, [currentUser])
 
+    useEffect(() => {
+      console.log('11111');
+    }, [petsArray])
+
     const value = {
-        petsArray,
-        petsAddedToWatchlist,
-        setPetsAddedToWatchlist,
+        petsArray, setPetsArray,
+        petsAddedToWatchlist, setPetsAddedToWatchlist,
+        ownedPets, setOwnedPets,
     }
 
     useEffect(() => {

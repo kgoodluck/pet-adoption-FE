@@ -1,0 +1,41 @@
+.wrapper-admin {
+    padding: 15vh;
+    padding-top: max(90px, 8vh);
+    min-height: 100vh;
+    min-width: 100vw;
+}
+.nav-admin {
+    background-color: #0d6efd;
+    border-bottom: #0645a4;
+    padding: 18px 10px;
+    backdrop-filter: none;
+}
+.nav-admin a {
+    color: #ffffff;
+}
+.nav-admin a:hover {
+    color: #dddddd;
+}
+.nav-admin a:active {
+    color: #bbbbbb;
+}
+.nav-admin .nav-bar-center {
+    color: #ffffff;
+}
+
+.tab-content {
+    padding: 0;
+}
+
+table.owned-pets {
+    width: 100%;
+}
+
+.small-button {
+    padding: 3px 7px;
+        /* --bs-btn-padding-x: 0.75rem; */
+        --bs-btn-padding-y: 0rem;
+        --bs-btn-font-size: 0.7rem;
+        --bs-btn-font-weight: 800;
+        --bs-btn-line-height: 1.5;
+}
