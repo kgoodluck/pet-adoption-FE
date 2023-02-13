@@ -18,7 +18,7 @@ export default function PetsTable({petsList}) {
                 ( searchParams.status ? pet.adoptionStatus.toLocaleLowerCase().includes(searchParams.status.toLocaleLowerCase()) : true )
             )});
         setPetsToDisplay(newArray);
-    }, [searchParams])
+    }, [searchParams, petsList])
 
   return (
         <Table striped bordered hover>

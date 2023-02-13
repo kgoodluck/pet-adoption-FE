@@ -53,6 +53,7 @@ export default function PetsContextProvider({ children }) {
     }, [currentUser])
 
     useEffect(() => {
+      getOwnedPets();
       console.log('11111');
     }, [petsArray])
 

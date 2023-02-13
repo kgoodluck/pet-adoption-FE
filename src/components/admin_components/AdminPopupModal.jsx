@@ -36,7 +36,8 @@ export default function AdminPopupModal(props) {
         }
         const res = await addNewPetApi(petData);
         if (res.status === 200) {
-            setPetsArray([...petsArray, res.data]);
+            const newPetsArray = [...petsArray, res.data]
+            setPetsArray(newPetsArray);
             setIsAwaitingResponse(false);
             setSuccessMessage('Pet was added!');
             setAddValidation(false);

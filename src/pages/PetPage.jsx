@@ -123,7 +123,7 @@ export default function PetPage() {
     console.log('petToUpdate', petsArray[petToUpdate]);
     petsArray[petToUpdate] = petFromDb;
     console.log('petToUpdate2', petsArray[petToUpdate]);
-    const newPetsArray = petsArray;
+    const newPetsArray = [...petsArray];
     setPetsArray(newPetsArray);
   }, [petFromDb])
 

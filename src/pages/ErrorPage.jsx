@@ -11,8 +11,8 @@ export default function ErrorPage({ errorCode }) {
         <div className='error-page'>
           <h1 className='display-1'>Oops! <strong>{errorCode}</strong></h1>
           <h4>
-            {errorCode == 404 && "Page not found"}
-            {errorCode == 403 && "Access denied"}
+            {errorCode === 404 && "Page not found"}
+            {errorCode === 403 && "Access denied"}
             {!errorCode && "Something went wrong"}
           </h4>
           <p>
